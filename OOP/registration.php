@@ -10,31 +10,35 @@
 
         if(empty($username) || empty($email) || empty($password) || empty($repeat) || empty($role)){
             echo "<div class='alert alert-danger'>ALL FIELDS REQUIRED</div>";
-        }elseif($password != $repeat){
+        }
+        elseif($password != $repeat){
             echo "<div class='alert alert-danger'>PASSWORD NOT MATCHED</div>";
         }else{
-            $stmt = $con->prepare("SELECT id FROM user WHERE email = ? OR username = ?");
-            $stmt->bind_param("ss",$email,$username);
-            $stmt->execute();
-            $stmt->store_result();
+            $sql = "SELECT id FROM user WHERE email = '$email'";
+            $result = $con->query($sql);
 
-            if($stmt->num_rows > 0 ){
-                echo "<div class='alert alert-danger'>Username or Email already taken!</div>";
+            if($result->num_rows > 0){
+                echo "<div class='alert alert-danger'>EMAIL ALREADY TAKENED</div>";
+            }else{
+                $hash = password_hash($password,PASSWORD_DEFAULT);
+
+                $stmt = $con->prepare("INSERT INTO user(username,email,password,role) VALUES (?,?,?,?)");
+                $stmt->bind_param("ssss",$username,$email,$hash,$role);
+
+                if($stmt->execute()){
+                    echo "<div class='alert alert-success'>YOU ARE REGISTERED</div>";
+                }
+                $stmt->close();
             }
-            $stmt->close();
-
-            $hash = password_hash($password,PASSWORD_DEFAULT);
-
-            $stmt = $con->prepare("INSERT INTO user(username,email,password,role) VALUES (?,?,?,?)");
-            $stmt->bind_param("ssss",$username,$email,$hash,$role);
             
-            if($stmt->execute()){
-                echo "<div class='alert alert-success'>You are Registered!</div>";
-            }
-
-            $stmt->close();
+           
         }
-    }
+
+       
+
+}
+
+           
 
 ?>
 
