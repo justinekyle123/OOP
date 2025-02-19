@@ -1,6 +1,8 @@
 <?php
     include_once("connections/db.php");
 
+    $error = "";
+
     if($_SERVER["REQUEST_METHOD"] === "POST"){
         $username = $_POST['username'];
         $email = $_POST['email'];

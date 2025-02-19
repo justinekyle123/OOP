@@ -1,6 +1,36 @@
 <?php
+    session_start();
     include_once("connections/db.php");
 
+    $error = "";
+
+    if($_SERVER["REQUEST_METHOD"]=== "POST"){
+        $email = $_POST['email'];
+        $password = $_POST["password"];
+
+        $sql = "SELECT * FROM user WHERE email = '$email'";
+        $result = $con->query($sql);
+        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+        if($result->num_rows > 0 ){
+
+            if(password_verify($password,$row["password"])){
+
+                $_SESSION['user_id'] = $row['id'];
+                $_SESSION['username'] = $row['username'];
+                $_SESSION['role'] = $row['role'];
+
+                header("Location: index.php");
+                exit();
+
+            }else{
+                echo "<div class='alert alert-danger'>WRONG PASSWORD</div>";
+            }
+        }else{
+            echo "<div class='alert alert-danger'>WRONG EMAIL</div>";
+        }
+        
+    } 
     
 
 ?>
