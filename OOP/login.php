@@ -13,11 +13,20 @@
         $row = $result->fetch_assoc();
         $total = $result->num_rows;
 
-        if($total > 0){
+        if($total > 0){    
+            
             $_SESSION['UserLogin'] = $row['email'];
             $_SESSION['Access'] = $row['role'];
 
-            header("location: index.php");
+            $hash = $row['password'];        
+            // if(password_verify($password,$hash)){
+                header("location: index.php");
+            // }else{
+            //     echo "<div class='alert alert-danger'>PASSWORD NOT MATCH</div>";
+            // }
+
+        }else{
+            echo "<div class='alert alert-danger'>EMAIL NOT FOUND</div>";
         }
         
     }
