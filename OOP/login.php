@@ -17,29 +17,18 @@
     <body>
 <div class="container-main">
 <div class="container p-3" id="register">
-    <center><h2 class="mb-4 h2">Register Here</h2></center>
-<form>
-  <div class="mb-3">
-    <input type="text" class="form-control" name="username" placeholder="Username">
-  </div>
+    <center><h2 class="mb-4 h2">Login</h2></center>
+<form action="" method="post">
   <div class="mb-3">
     <input type="email" class="form-control" name="email" placeholder="Email">
   </div>
   <div class="mb-3">
     <input type="password" class="form-control" name="password" placeholder="Password">
   </div>
-  <div class="mb-3">
-    <input type="password" class="form-control" name="repeat" placeholder="Repeat Password">
-  </div>
-  <select name="role" class="form-select mb-3" >
-    <option selected>--Select Role--</option>
-    <option value="admin" class="">Admin</option>
-    <option value="user">User</option>
-  </select>
   <button type="submit" class="btn btn-primary mb-3">Submit</button>
-  <p class="">Already have account? <a href="login.php">Login</a></p>
+  <p class="">You don't have account? <a href="registration.php">Register</a></p>
 </form>
 </div>
 </div>
-    </body>
-    </html>
+</body>
+</html>
