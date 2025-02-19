@@ -30,7 +30,7 @@
 <div class="container-main">
 <div class="container p-3" id="register">
     <center><h2 class="mb-4 h2">Register Here</h2></center>
-<form action="" method="post">
+<form action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
   <div class="mb-3">
     <input type="text" class="form-control" name="username" placeholder="Username">
   </div>
