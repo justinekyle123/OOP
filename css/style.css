@@ -1,0 +1,16 @@
+.container-main{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#register{
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 0 3px rgb(192, 190, 190);
+}
+.btn{
+    width: 100%;
+}
