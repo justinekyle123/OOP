@@ -1,7 +1,19 @@
 <?php
     include_once("connections/db.php");
 
+    if($_SERVER["REQUEST_METHOD"] === "POST"){
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $repeat = $_POST['repeat'];
+        $role = $_POST['role'];
 
+        if(empty($username) || empty($email) || empty($password) || empty($repeat) || empty($role)){
+            echo "<div class='alert alert-danger'>ALL FIELDS REQUIRED</div>";
+        }elseif($password != $repeat){
+            echo "<div class='alert alert-danger'>PASSWORD NOT MATCHED</div>";
+        }
+    }
 
 ?>
 
@@ -18,7 +30,7 @@
 <div class="container-main">
 <div class="container p-3" id="register">
     <center><h2 class="mb-4 h2">Register Here</h2></center>
-<form>
+<form action="" method="post">
   <div class="mb-3">
     <input type="text" class="form-control" name="username" placeholder="Username">
   </div>
